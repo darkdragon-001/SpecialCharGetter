@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-
 import io
+import os
 import sys
 import pyperclip
 
 # load replacements
 def load():
     dict = {}
-    with io.open('chars.ini', 'rt', encoding='utf-8-sig') as file:
+    charsPath = os.path.dirname(os.path.abspath(__file__))  # location of this file
+    charsFile = os.path.join(charsPath, 'chars.ini')
+    with io.open(charsFile, 'rt', encoding='utf-8-sig') as file:
         for line in file:
             l = line.rstrip()  # strip newline
             if line[0] != ';':
