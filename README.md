@@ -2,8 +2,7 @@
 
 ## Installation
 
-    sudo apt-get install python3 pip3
-    sudo apt-get pip3 pyperclip
+    sudo apt-get install python3 python3-pyperclip
 
 ## Usage
 
