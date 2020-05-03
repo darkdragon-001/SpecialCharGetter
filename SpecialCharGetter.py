@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import io
 import os
 import sys
@@ -11,8 +11,8 @@ def load():
     charsFile = os.path.join(charsPath, 'chars.ini')
     with io.open(charsFile, 'rt', encoding='utf-8-sig') as file:
         for line in file:
-            l = line.rstrip()  # strip newline
-            if line[0] != ';':
+            l = line.rstrip('\r\n')  # strip newline
+            if l and l[0] != ';':
                 char = l.split('=')
                 if len(char) == 2:
                     dict[char[0]] = char[1]
