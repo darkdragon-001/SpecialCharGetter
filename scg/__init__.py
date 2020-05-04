@@ -1,0 +1,1 @@
+from .SpecialCharGetter import main

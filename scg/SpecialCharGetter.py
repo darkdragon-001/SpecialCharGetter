@@ -2,25 +2,23 @@
 import io
 import os
 import sys
+import pkg_resources
 import pyperclip
 
 # load replacements
-def load():
+def load(charsString):
     dict = {}
-    charsPath = os.path.dirname(os.path.abspath(__file__))  # location of this file
-    charsFile = os.path.join(charsPath, 'chars.ini')
-    with io.open(charsFile, 'rt', encoding='utf-8-sig') as file:
-        for line in file:
-            l = line.rstrip('\r\n')  # strip newline
-            if l and l[0] != ';':
-                char = l.split('=')
-                if len(char) == 2:
-                    dict[char[0]] = char[1]
-                    #print('token: '+char[0]+"; replacement: "+char[1])
-                #else:
-                    #print('invalid format: ' + l)
+    for line in charsString.splitlines():
+        l = line.rstrip('\r\n')  # strip newline
+        if l and l[0] != ';':
+            char = l.split('=')
+            if len(char) == 2:
+                dict[char[0]] = char[1]
+                #print('token: '+char[0]+"; replacement: "+char[1])
             #else:
-                #print('ignore comment: ' + l)
+                #print('invalid format: ' + l)
+        #else:
+            #print('ignore comment: ' + l)
     return dict
 
 # helpers
@@ -40,7 +38,8 @@ def process(dict, list):
 # main
 def main():
     # load replacements
-    dict = load()
+    charsString = pkg_resources.resource_string(__name__, "chars.ini").decode("utf-8-sig")
+    dict = load(charsString)
     ## replace mode
     if len(sys.argv) > 1:
         # process arguments

@@ -2,15 +2,14 @@
 
 ## Installation
 
-    sudo apt-get install python3 python3-pyperclip
+    pip3 install .
 
 ## Usage
 
 Interactive:
 
-    ./SpecialCharGetter.py
+    scg
 
 API:
 
-    ./SpecialCharGetter.py CHAR1 [CHAR2 [CHAR3...]]
-
+    scg CHAR1 [CHAR2 [CHAR3...]]
